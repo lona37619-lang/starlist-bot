@@ -1,8 +1,21 @@
 const TelegramBot = require('node-telegram-bot-api');
+const express = require('express');
 
-const token = '8753362108:AAHWITBhujliEqy85IMb8rBqiGIvQUj0cEk';
+const token = process.env.BOT_TOKEN;
+const app = express();
 
-const bot = new TelegramBot(token, { polling: true });
+const port = process.env.PORT || 3000;
+const url = process.env.RENDER_EXTERNAL_URL;
+
+const bot = new TelegramBot(token);
+bot.setWebHook(`${url}/bot${token}`);
+
+app.use(express.json());
+
+app.post(`/bot${token}`, (req, res) => {
+  bot.processUpdate(req.body);
+  res.sendStatus(200);
+});
 
 const botsList = [
   {
@@ -20,18 +33,24 @@ const botsList = [
 bot.onText(/\/start/, (msg) => {
   bot.sendMessage(
     msg.chat.id,
-    'Привет! Я каталог ботов.\nНажми /bots чтобы открыть список.'
+    'Привет! Я каталог ботов. Нажми /bots чтобы открыть список.'
   );
 });
 
 bot.onText(/\/bots/, (msg) => {
   bot.sendMessage(msg.chat.id, 'Список ботов:', {
     reply_markup: {
-      inline_keyboard: botsList.map(botItem => [
-        { text: botItem.name, url: botItem.url }
+      inline_keyboard: botsList.map((item) => [
+        { text: item.name, url: item.url }
       ])
     }
   });
 });
 
-console.log('Бот запущен');
+app.get('/', (req, res) => {
+  res.send('Bot is running');
+});
+
+app.listen(port, () => {
+  console.log(`Server running on port ${port}`);
+});
