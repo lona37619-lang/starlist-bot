@@ -90,11 +90,11 @@ bot.onText(/\/proofs/, async (msg) => {
     caption: 'Пруф 1'
   });
 
-  await bot.sendPhoto(chatId, 'https://example.com/proof2.jpg', {
+  await bot.sendPhoto(chatId, 'IMG_3966.png', {
     caption: 'Пруф 2'
   });
 
-  await bot.sendPhoto(chatId, 'https://example.com/proof3.jpg', {
+  await bot.sendPhoto(chatId, 'IMG_3965.png', {
     caption: 'Пруф 3'
   });
 });
