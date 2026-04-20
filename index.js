@@ -24,9 +24,14 @@ const botsList = [
     url: 'https://t.me/duckearnbot?start=ref_7837011810'
   },
   {
-    name: '⭐  Другой бот',
+    name: '⭐ Другой бот',
     description: 'Бот со звёздами',
     url: 'https://t.me/petiti_bot?start=ref_7837011810'
+  },
+  {
+    name: '⭐ Третий бот',
+    description: 'Сюда потом вставишь своё',
+    url: 'https://t.me/your_bot_here'
   }
 ];
 
