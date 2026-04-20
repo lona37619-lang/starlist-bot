@@ -32,6 +32,26 @@ const botsList = [
     name: '⭐ Третий бот',
     description: 'Бот со звёздами',
     url: 'https://t.me/Sigma_robot?start=7837011810'
+  },
+  {
+    name: '⭐ Четвертый бот',
+    description: 'Бот со звёздами',
+    url: 'https://t.me/WexGiftRobot?start=7837011810'
+  },
+  {
+    name: '⭐ Пятый бот',
+    description: 'Бот со звёздами',
+    url: 'https://t.me/LovStarsrobot?start=7837011810'
+  },
+  {
+    name: '⭐ Шестой бот',
+    description: 'Бот со звёздами',
+    url: 'https://t.me/Starpluss_bot?start=407510'
+  },
+  {
+    name: '⭐ Седьмой бот',
+    description: 'Бот со звёздами',
+    url: 'https://t.me/starsagift_bot?start=rQ8OqvZs7Dxwhz'
   }
 ];
 
