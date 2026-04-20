@@ -36,40 +36,103 @@ const botsList = [
   {
     name: '⭐ Четвертый бот',
     description: 'Бот со звёздами',
-    url: 'https://t.me/WexGiftRobot?start=7837011810'
+    url: 'https://t.me/your_bot_here_4'
   },
   {
     name: '⭐ Пятый бот',
     description: 'Бот со звёздами',
-    url: 'https://t.me/LovStarsrobot?start=7837011810'
+    url: 'https://t.me/your_bot_here_5'
   },
   {
     name: '⭐ Шестой бот',
     description: 'Бот со звёздами',
-    url: 'https://t.me/Starpluss_bot?start=407510'
+    url: 'https://t.me/your_bot_here_6'
   },
   {
     name: '⭐ Седьмой бот',
     description: 'Бот со звёздами',
-    url: 'https://t.me/starsagift_bot?start=rQ8OqvZs7Dxwhz'
+    url: 'https://t.me/your_bot_here_7'
   }
 ];
 
-bot.onText(/\/start/, (msg) => {
-  bot.sendMessage(
+bot.onText(/\/start/, async (msg) => {
+  await bot.sendMessage(
     msg.chat.id,
-    'Привет! Я каталог ботов. Нажми /bots чтобы открыть список.'
+    'Привет! Я каталог ботов.\n\nНажми нужную кнопку ниже:',
+    {
+      reply_markup: {
+        keyboard: [
+          ['📋 Список ботов'],
+          ['📸 Пруфы']
+        ],
+        resize_keyboard: true
+      }
+    }
   );
 });
 
-bot.onText(/\/bots/, (msg) => {
-  bot.sendMessage(msg.chat.id, 'Список ботов:', {
+bot.onText(/\/bots/, async (msg) => {
+  await bot.sendMessage(msg.chat.id, 'Список ботов:', {
     reply_markup: {
       inline_keyboard: botsList.map((item) => [
         { text: item.name, url: item.url }
       ])
     }
   });
+});
+
+bot.onText(/\/proofs/, async (msg) => {
+  const chatId = msg.chat.id;
+
+  await bot.sendMessage(chatId, '📸 Пруфы вывода:');
+
+  await bot.sendPhoto(chatId, 'https://example.com/proof1.jpg', {
+    caption: 'Пруф 1'
+  });
+
+  await bot.sendPhoto(chatId, 'https://example.com/proof2.jpg', {
+    caption: 'Пруф 2'
+  });
+
+  await bot.sendPhoto(chatId, 'https://example.com/proof3.jpg', {
+    caption: 'Пруф 3'
+  });
+});
+
+bot.on('message', async (msg) => {
+  const text = msg.text;
+  const chatId = msg.chat.id;
+
+  if (!text) return;
+  if (text.startsWith('/')) return;
+
+  if (text === '📋 Список ботов') {
+    await bot.sendMessage(chatId, 'Список ботов:', {
+      reply_markup: {
+        inline_keyboard: botsList.map((item) => [
+          { text: item.name, url: item.url }
+        ])
+      }
+    });
+    return;
+  }
+
+  if (text === '📸 Пруфы') {
+    await bot.sendMessage(chatId, '📸 Пруфы вывода:');
+
+    await bot.sendPhoto(chatId, 'https://example.com/proof1.jpg', {
+      caption: 'Пруф 1'
+    });
+
+    await bot.sendPhoto(chatId, 'https://example.com/proof2.jpg', {
+      caption: 'Пруф 2'
+    });
+
+    await bot.sendPhoto(chatId, 'https://example.com/proof3.jpg', {
+      caption: 'Пруф 3'
+    });
+    return;
+  }
 });
 
 app.get('/', (req, res) => {
