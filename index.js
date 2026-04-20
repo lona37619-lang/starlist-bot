@@ -1,5 +1,6 @@
 const TelegramBot = require('node-telegram-bot-api');
 const express = require('express');
+const path = require('path');
 
 const token = process.env.BOT_TOKEN;
 const app = express();
@@ -36,24 +37,40 @@ const botsList = [
   {
     name: '⭐ Четвертый бот',
     description: 'Бот со звёздами',
-    url: 'https://t.me/your_bot_here_4'
+    url: 'https://t.me/WexGiftRobot?start=7837011810'
   },
   {
     name: '⭐ Пятый бот',
     description: 'Бот со звёздами',
-    url: 'https://t.me/your_bot_here_5'
+    url: 'https://t.me/LovStarsrobot?start=7837011810'
   },
   {
     name: '⭐ Шестой бот',
     description: 'Бот со звёздами',
-    url: 'https://t.me/your_bot_here_6'
+    url: 'https://t.me/Starpluss_bot?start=407510'
   },
   {
     name: '⭐ Седьмой бот',
     description: 'Бот со звёздами',
-    url: 'https://t.me/your_bot_here_7'
+    url: 'https://t.me/starsagift_bot?start=rQ8OqvZs7Dxwhz'
   }
 ];
+
+async function sendProofs(chatId) {
+  await bot.sendMessage(chatId, '📸 Пруфы вывода:');
+
+  await bot.sendPhoto(chatId, path.join(__dirname, 'IMG_3967.png'), {
+    caption: 'Пруф 1'
+  });
+
+  await bot.sendPhoto(chatId, path.join(__dirname, 'IMG_3966.png'), {
+    caption: 'Пруф 2'
+  });
+
+  await bot.sendPhoto(chatId, path.join(__dirname, 'IMG_3965.png'), {
+    caption: 'Пруф 3'
+  });
+}
 
 bot.onText(/\/start/, async (msg) => {
   await bot.sendMessage(
@@ -82,21 +99,7 @@ bot.onText(/\/bots/, async (msg) => {
 });
 
 bot.onText(/\/proofs/, async (msg) => {
-  const chatId = msg.chat.id;
-
-  await bot.sendMessage(chatId, '📸 Пруфы вывода:');
-
-  await bot.sendPhoto(chatId, 'IMG_3967.png', {
-    caption: 'Пруф 1'
-  });
-
-  await bot.sendPhoto(chatId, 'IMG_3966.png', {
-    caption: 'Пруф 2'
-  });
-
-  await bot.sendPhoto(chatId, 'IMG_3965.png', {
-    caption: 'Пруф 3'
-  });
+  await sendProofs(msg.chat.id);
 });
 
 bot.on('message', async (msg) => {
@@ -118,19 +121,7 @@ bot.on('message', async (msg) => {
   }
 
   if (text === '📸 Пруфы') {
-    await bot.sendMessage(chatId, '📸 Пруфы вывода:');
-
-    await bot.sendPhoto(chatId, 'https://example.com/proof1.jpg', {
-      caption: 'Пруф 1'
-    });
-
-    await bot.sendPhoto(chatId, 'https://example.com/proof2.jpg', {
-      caption: 'Пруф 2'
-    });
-
-    await bot.sendPhoto(chatId, 'https://example.com/proof3.jpg', {
-      caption: 'Пруф 3'
-    });
+    await sendProofs(chatId);
     return;
   }
 });
