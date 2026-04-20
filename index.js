@@ -19,14 +19,14 @@ app.post(`/bot${token}`, (req, res) => {
 
 const botsList = [
   {
-    name: 'DuckEarnBot',
+    name: '⭐ Первый бот',
     description: 'Бот с заданиями',
     url: 'https://t.me/duckearnbot?start=ref_7837011810'
   },
   {
-    name: 'Skewkdkd',
+    name: '⭐  Другой бот',
     description: 'Бот со звёздами',
-    url: 'https://t.me/skewkdkd?start=ref_7837011810'
+    url: 'https://t.me/petiti_bot?start=ref_7837011810'
   }
 ];
 
