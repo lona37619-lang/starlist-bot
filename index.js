@@ -86,7 +86,7 @@ bot.onText(/\/proofs/, async (msg) => {
 
   await bot.sendMessage(chatId, '📸 Пруфы вывода:');
 
-  await bot.sendPhoto(chatId, 'https://example.com/proof1.jpg', {
+  await bot.sendPhoto(chatId, 'IMG_3967.png', {
     caption: 'Пруф 1'
   });
 
